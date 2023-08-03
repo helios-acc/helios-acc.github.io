@@ -19,7 +19,7 @@ const DECIMAL = 1000;
 
 const client = new dhive.Client(['https://hived.emre.sh']);
 
-const ssc = new SSC('https://api.hive-engine.com/rpc');
+const ssc = new SSC('https://engine.rishipanthee.com');
 
 
 
