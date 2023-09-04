@@ -1,355 +1,556 @@
 <!DOCTYPE html>
 
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
 
-<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Helios Accounts</title>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="helios-static.png" />
 
-  <title>Helios Accounts</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
 
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
+  <body>
+    <div class="m-0 mt-2 mb-2">
+      <div class="d-flex align-items-center justify-content-center">
+        <img id="logo" src="helios-static.png" />
 
-  <link rel="icon" href="helios-static.png">
+        <div class="ms-0 p-3 d-flex flex-column">
+          <span class="h3 m-0 c">HELIOS ACCOUNTS</span>
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-
-  <link rel="stylesheet" href="style.css">
-
-</head>
-
-<body>
-
-  <div class="m-0 mt-2 mb-2">
-
-    <div class="d-flex align-items-center justify-content-center">
-
-      <img id="logo" src="helios-static.png">
-
-      
-
-      <div class="ms-0 p-3 d-flex flex-column">
-
-        <span class="h3 m-0 c">HELIOS ACCOUNTS</span>
-
-        <span class="h5 m-0">Create new Hive accounts</span>
-
+          <span class="h5 m-0">Create new Hive accounts</span>
+        </div>
       </div>
-
     </div>
 
-  </div>
+    <div
+      id="app"
+      class="gap-3 ms-3 me-3 flex-grow-2 d-flex justify-content-center"
+    >
+      <div id="maincard" class="d-flex flex-column gap-3 appcard">
+        <div id="smalltiles" class="d-flex gap-3 w-100">
+          <div class="card w-100">
+            <div class="mb-2">
+              <div class="input-group input-group d-flex flex-nowrap mb-1">
+                <span class="input-group-text input a back">@</span>
 
+                <input
+                  class="input form-control b"
+                  id="username"
+                  type="text"
+                  placeholder="Username"
+                />
 
-
-  <div id="app" class="gap-3 ms-3 me-3 flex-grow-2 d-flex justify-content-center">
-
-    <div id="maincard" class="d-flex flex-column gap-3 appcard">
-
-      <div id="smalltiles" class="d-flex gap-3 w-100">
-
-        
-
-        <div class="card w-100">
-
-          <div class="mb-2">
-
-            
-
-            <div class="input-group input-group d-flex flex-nowrap mb-1">        
-
-              <span class="input-group-text input a back">@</span>
-
-              <input class="input form-control b" id="username" type="text" placeholder="Username">
-
-              <button type="button" id="load-balance" class="btn btn-warning ms-2 rounded-pill" style="font-weight: bold;">Load</button>
-
+                <button
+                  type="button"
+                  id="load-balance"
+                  class="btn btn-warning ms-2 rounded-pill"
+                  style="font-weight: bold"
+                >
+                  Load
+                </button>
+              </div>
             </div>
 
-            
+            <div class="d-flex justify-content-between">
+              <div class="d-flex flex-column">
+                <span class="h5 c m-0" id="balance">0.000 HELIOS</span>
 
-          </div>
-
-  
-
-          <div class="d-flex flex-column">
-
-            <span class="h5 c m-0" id="balance">0.000 HELIOS</span>
-
-            <span class="h5 c m-0" id="balanceInUSD">~ $0.000</span>
-
-          </div>
-
-        </div>
-
-
-
-        <div class="card w-100">
-
-          <div class="d-flex gap-3 justify-content-between">
-
-            <div class="d-flex flex-column">
-
-              <span class="h5">Creation Fee</span>
-
-              <span class="h5 c" id="fee">0 HELIOS</span>
-
-              <span class="h5 c" id="feeInHive">~ 0 HIVE</span>
-
-            </div>
-
-            <div class="d-flex flex-column">
-
-              <div class="h5 d-flex align-items-center">
-
-                <span class="h5 m-0 me-2">Market Price</span> 
-
-                <a class="link d-flex align-items-center justify-content-center" target="_blank" href="https://tribaldex.com/trade/HELIOS">
-
-                  <svg  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
-
-                    <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"></path>
-
-                    <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"></path>
-
-                  </svg>
-
-                </a>
-
+                <span class="h5 c m-0" id="balanceInUSD">~ $0.000</span>
+              </div>
+              
+              <div class="d-flex align-items-end">
+                <button
+                  type="button"
+                  id="redeem-voucher"
+                  class="btn btn-warning ms-2 rounded-pill"
+                  style="font-weight: bold"
+                  
+                >
+                  Redeem Voucher
+                </button>
                 
+                <button
+                  type="button"
+                  id="create-voucher"
+                  class="btn btn-warning ms-2 rounded-pill"
+                  style="font-weight: bold"
+                >
+                  Create Voucher
+                </button>
+              </div>
+            </div>
+          </div>
 
+          <div class="card w-100">
+            <div class="d-flex gap-3 justify-content-between">
+              <div class="d-flex flex-column">
+                <span class="h5">Creation Fee</span>
+
+                <span class="h5 c" id="fee">0 HELIOS</span>
+
+                <span class="h5 c" id="feeInHive">~ 0 HIVE</span>
               </div>
 
-              <span class="h5 c" id="price">0.0000 HIVE</span>
+              <div class="d-flex flex-column">
+                <div class="h5 d-flex align-items-center">
+                  <span class="h5 m-0 me-2">Market Price</span>
 
-              <span class="h5 c" id="priceInUSD">$0.00</span>  
+                  <a
+                    class="link d-flex align-items-center justify-content-center"
+                    target="_blank"
+                    href="https://tribaldex.com/trade/HELIOS"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      class="bi bi-box-arrow-up-right"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"
+                      ></path>
 
+                      <path
+                        fill-rule="evenodd"
+                        d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"
+                      ></path>
+                    </svg>
+                  </a>
+                </div>
+
+                <span class="h5 c" id="price">0.0000 HIVE</span>
+
+                <span class="h5 c" id="priceInUSD">$0.00</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card h-100">
+          <div class="mb-4">
+            <label class="form-label h4" for="username">New Username</label>
+
+            <div class="input-group input-group-lg d-flex flex-nowrap mb-1">
+              <span class="input-group-text input a back">@</span>
+
+              <input
+                class="input form-control form-control-lg b"
+                id="new-account"
+                type="text"
+                placeholder="New Username"
+              />
             </div>
 
+            <div class="back ms-2" id="username-feedback">
+              Enter the username you want to create.
+            </div>
           </div>
 
+          <div class="mb-4">
+            <label class="form-label h4" for="username">Master Password</label>
+
+            <div class="input-group input-group-lg d-flex flex-nowrap mb-1">
+              <input
+                class="input form-control form-control-lg a"
+                id="password"
+                type="text"
+                placeholder="HELIOS000XXXX"
+              />
+
+              <span class="input-group-text input b back p" id="genpass">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-arrow-clockwise"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"
+                  />
+
+                  <path
+                    d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"
+                  />
+                </svg>
+              </span>
+            </div>
+
+            <div class="back ms-2" id="password-feedback">
+              Random Generated Password
+            </div>
+          </div>
+
+          <button
+            type="button"
+            id="create"
+            class="btn btn-warning rounded-pill mb-3 w-100"
+            disabled
+          >
+            <span style="font-weight: bold">Create</span>
+          </button>
+
+          <span id="create-feedback"></span>
         </div>
-
-
-
       </div>
 
+      <div id="keyscard" class="d-none flex-column gap-3 appcard">
+        <div class="card h-100">
+          <span class="mb-4"
+            >These are your private keys, make sure to store them safely. After
+            the account creation you are highly recommended to change your
+            Master Password and Keys. You can do that safely at
+            <a class="link" href="https://wallet.hive.blog" target="_blank"
+              >wallet.hive.blog</a
+            >
+            by logging in with your Username and Master Password. This new
+            account's credentials will also be transferred to you via an
+            encrypted memo.</span
+          >
 
+          <div id="keys" class="h5 mb-3">
+            <div id="keysbody">
+              <div>
+                <span>Username: </span>
 
-      <div class="card h-100">
+                <span id="new-username"></span>
+              </div>
 
-        <div class="mb-4">
+              <br />
 
-          <label class="form-label h4" for="username">New Username</label>
+              <div>
+                <span>Backup (Master Password): </span>
 
-          
+                <span id="new-password"></span>
+              </div>
 
-          <div class="input-group input-group-lg d-flex flex-nowrap mb-1">        
+              <br />
 
-            <span class="input-group-text input a back">@</span>
+              <div>
+                <span>Owner Key: </span>
 
-            <input class="input form-control form-control-lg b" id="new-account" type="text" placeholder="New Username">
+                <span id="owner"></span>
+              </div>
 
+              <br />
+
+              <div>
+                <span>Active Key: </span>
+
+                <span id="active"></span>
+              </div>
+
+              <br />
+
+              <div>
+                <span>Posting Key: </span>
+
+                <span id="posting"></span>
+              </div>
+
+              <br />
+
+              <div>
+                <span>Memo Key: </span>
+
+                <span id="memo"></span>
+              </div>
+            </div>
           </div>
 
-          
+          <div id="downbtns" class="d-flex gap-3 mb-3">
+            <button
+              type="button"
+              id="download"
+              class="btn btn-warning rounded-pill d-flex align-items-center gap-2"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                fill="currentColor"
+                class="bi bi-download"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"
+                />
 
-          <div class="back ms-2" id="username-feedback">Enter the username you want to create.</div>
-
-        </div>
-
-  
-
-        <div class="mb-4">
-
-          <label class="form-label h4" for="username">Master Password</label>
-
-          
-
-          <div class="input-group input-group-lg d-flex flex-nowrap mb-1">        
-
-            <input class="input form-control form-control-lg a" id="password" type="text" placeholder="HELIOS000XXXX">
-
-            
-
-            <span class="input-group-text input b back p" id="genpass">
-
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
-
-                <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
-
-                <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
-
+                <path
+                  d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"
+                />
               </svg>
 
-            </span>
+              <span>Download</span>
+            </button>
 
+            <button
+              type="button"
+              id="copy"
+              class="btn btn-warning rounded-pill d-flex align-items-center gap-2"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                fill="currentColor"
+                class="bi bi-clipboard"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"
+                />
+
+                <path
+                  d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"
+                />
+              </svg>
+
+              <span>Copy to Clipboard</span>
+            </button>
           </div>
-
-
-
-          <div class="back ms-2" id="password-feedback">Random Generated Password</div>
-
         </div>
-
-
-
-        <button type="button" id="create" class="btn btn-warning rounded-pill mb-3 w-100" disabled>
-
-          <span style="font-weight: bold;">Create</span>
-
-        </button>
-
-        <span id="create-feedback"></span>
-
       </div>
-
     </div>
 
-
-
-    <div id="keyscard" class="d-none flex-column gap-3 appcard">
-
-      <div class="card h-100">
-
-        <span class="mb-4">These are your private keys, make sure to store them safely. After the account creation you are highly recommended to change your Master Password and Keys. You can do that safely at <a class="link" href="https://wallet.hive.blog" target="_blank">wallet.hive.blog</a> by logging in with your Username and Master Password. This new account's credentials will also be transferred to you via an encrypted memo.</span>
-
-        <div id="keys" class="h5 mb-3">
-
-          <div id="keysbody">
-
-            <div>
-
-              <span>Username: </span>
-
-              <span id="new-username"></span>
-
-            </div>
-
-            <br>
-
-            <div>
-
-              <span>Backup (Master Password): </span>
-
-              <span id="new-password"></span>
-
-            </div>
-
-            <br>
-
-            <div>
-
-              <span>Owner Key: </span>
-
-              <span id="owner"></span>
-
-            </div>
-
-            <br>
-
-            <div>
-
-              <span>Active Key: </span>
-
-              <span id="active"></span>
-
-            </div>
-
-            <br>
-
-            <div>
-
-              <span>Posting Key: </span>
-
-              <span id="posting"></span>
-
-            </div>
-
-            <br>
-
-            <div>
-
-              <span>Memo Key: </span>
-
-              <span id="memo"></span>
-
-            </div>
-
-          </div>
-
-        </div>
-
-        <div id="downbtns" class="d-flex gap-3 mb-3">
-
-          <button type="button" id="download" class="btn btn-warning rounded-pill d-flex align-items-center gap-2">
-
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
-
-              <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
-
-              <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
-
-            </svg>
-
-            <span>Download</span>
-
-          </button>
-
-  
-
-          <button type="button" id="copy" class="btn btn-warning rounded-pill d-flex align-items-center gap-2">
-
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
-
-              <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
-
-              <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
-
-            </svg>
-
-            <span>Copy to Clipboard</span>
-
-          </button>
-
-        </div>
-
-      </div>
-
+    <div class="mb-2">
+      <span>&nbsp;</span>
     </div>
 
-  </div>
+      <div class="modal" data-bs-backdrop="static" tabindex="-1" id="new-voucher-modal">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content card ">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <span class="h4 m-0 text-center">Create Voucher</span>
 
+              <button
+                type="button"
+                class="btn btn-warning rounded-pill p-0 ps-3 pe-3"
+                style="font-weight: bold"
+              >
+                <span id="new-voucher-fee"></span>
+              </button>
+              
+            </div>
 
+            <div class="input-group input-group d-flex flex-nowrap mb-1 mt-2">
 
-  <div class="mb-2">
+              <button
+                type="button"
+                class="btn btn-secondary rounded-pill p-0 ps-3 pe-3 me-2"
+                style="font-weight: bold"
+              >
+                <span>Name</span>
+              </button>
+              <input
+                class="input form-control voucher-input a"
+                id="new-voucher-name"
+                type="text"
+                value="Gift"
+                maxlength="25"
+              />
 
-    <span>&nbsp;</span>
+              <span class="input-group-text input b voucher-input back">
+                <button
+                  type="button"
+                  id="copy-voucher-name"
+                  class="btn">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    fill="#FEC354"
+                    class="bi bi-clipboard"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"
+                    />
 
-  </div>
+                    <path
+                      d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"
+                    />
+                  </svg>
+                </button>
+                
+              </span>
 
+            </div>
 
+            <div class="input-group input-group d-flex flex-nowrap mb-1 mt-2">
+              
+              <button
+                type="button"
+                class="btn btn-secondary rounded-pill p-0 ps-3 pe-3 me-2"
+                style="font-weight: bold"
+              >
+                <span>Voucher</span>
+              </button>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+              <input
+                class="input form-control a voucher-input"
+                id="new-voucher"
+                type="text"
+                style="text-transform: uppercase;"
+                disabled
+              />
 
-	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+              <span class="input-group-text input b voucher-input back">
+                <button
+                  type="button"
+                  id="copy-voucher"
+                  class="btn">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    fill="#FEC354"
+                    class="bi bi-clipboard"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"
+                    />
 
-		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+                    <path
+                      d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"
+                    />
+                  </svg>
+                </button>
+                
+              </span>
 
-		crossorigin="anonymous"></script>
+            </div>
+
+            <div class="mt-2" id="new-voucher-feedback"></div>
+
+            <div class="d-flex justify-content-end gap-3 align-items-center">
+
+              <button
+                id="cancel-voucher"
+                type="button"
+                data-bs-dismiss="modal"
+                class="btn btn-secondary mt-3 rounded-pill d-flex align-items-center justify-content-center"
+                style="font-weight: bold"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                  <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                </svg>&nbsp;&nbsp;
+                Cancel
+              </button>
+
+              <button
+                type="button"
+                id="unlock-voucher"
+                class="btn btn-warning mt-3 rounded-pill d-flex align-items-center justify-content-center"
+                style="font-weight: bold"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-unlock" viewBox="0 0 16 16">
+                  <path d="M11 1a2 2 0 0 0-2 2v4a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h5V3a3 3 0 0 1 6 0v4a.5.5 0 0 1-1 0V3a2 2 0 0 0-2-2zM3 8a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1H3z"/>
+                </svg>&nbsp;&nbsp;
+                Unlock Voucher
+              </button>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+
+      <div class="modal" data-bs-backdrop="static" tabindex="-1" id="redeem-voucher-modal">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content card ">
+            <span class="h4 m-0 mb-2">Redeem Voucher</span>
+            
+            <div class="input-group d-flex flex-nowrap mb-1 mt-2">
+
+              <input
+                class="input form-control voucher-input"
+                id="voucher"
+                type="text"
+                style="text-transform: uppercase;"
+                placeholder="Enter Voucher Code"
+              />
+
+            </div>
+
+            <div class="mt-2" id="redeem-voucher-feedback">
+              <span class="text-warning mt-2" style="font-size:1.1em">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                  <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+                </svg>&nbsp;
+                Coming Soon!</span>
+            </div>
+
+            <div class="d-flex justify-content-end gap-3 align-items-center">
+
+              <button
+                type="button"
+                data-bs-dismiss="modal"
+                class="btn btn-secondary mt-3 rounded-pill d-flex align-items-center justify-content-center"
+                style="font-weight: bold"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                  <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                </svg>&nbsp;&nbsp;
+                Cancel
+              </button>
+
+              <button
+                type="button"
+                id="redeem-account"
+                class="btn btn-warning mt-3 rounded-pill d-flex align-items-center justify-content-center"
+                style="font-weight: bold"
+                disabled
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-seam-fill" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M15.528 2.973a.75.75 0 0 1 .472.696v8.662a.75.75 0 0 1-.472.696l-7.25 2.9a.75.75 0 0 1-.557 0l-7.25-2.9A.75.75 0 0 1 0 12.331V3.669a.75.75 0 0 1 .471-.696L7.443.184l.01-.003.268-.108a.75.75 0 0 1 .558 0l.269.108.01.003 6.97 2.789ZM10.404 2 4.25 4.461 1.846 3.5 1 3.839v.4l6.5 2.6v7.922l.5.2.5-.2V6.84l6.5-2.6v-.4l-.846-.339L8 5.961 5.596 5l6.154-2.461L10.404 2Z"/>
+                </svg>&nbsp;&nbsp;
+                Redeem Account
+              </button>
+            </div>            
+          </div>
+        </div>
+      </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/sscjs@latest/dist/ssc.min.js"></script>
 
-  <script src="https://unpkg.com/@hiveio/dhive@0.14.12/dist/dhive.js"></script>
+    <script src="https://unpkg.com/@hiveio/dhive@0.14.12/dist/dhive.js"></script>
 
-  <script src="main.js"></script>
-
-</body>
-
+    <script src="main.js"></script>
+  </body>
 </html>
