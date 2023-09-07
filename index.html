@@ -42,7 +42,7 @@
       <div id="maincard" class="d-flex flex-column gap-3 appcard">
         <div id="smalltiles" class="d-flex gap-3 w-100">
           <div class="card w-100">
-            <div class="mb-2">
+            <div class="mb-2" id="user_load_div">
               <div class="input-group input-group d-flex flex-nowrap mb-1">
                 <span class="input-group-text input a back">@</span>
 
@@ -64,7 +64,7 @@
               </div>
             </div>
 
-            <div class="d-flex justify-content-between">
+            <div class="d-flex justify-content-between" id="info_sec_div">
               <div class="d-flex flex-column">
                 <span class="h5 c m-0" id="balance">0.000 HELIOS</span>
 
@@ -214,8 +214,7 @@
 
       <div id="keyscard" class="d-none flex-column gap-3 appcard">
         <div class="card h-100">
-          <span class="mb-4"
-            >These are your private keys, make sure to store them safely. After
+          <span class="mb-4" id="keys-info">These are your private keys, make sure to store them safely. After
             the account creation you are highly recommended to change your
             Master Password and Keys. You can do that safely at
             <a class="link" href="https://wallet.hive.blog" target="_blank"
@@ -493,12 +492,7 @@
             </div>
 
             <div class="mt-2" id="redeem-voucher-feedback">
-              <span class="text-warning mt-2" style="font-size:1.1em">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
-                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                  <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
-                </svg>&nbsp;
-                Coming Soon!</span>
+              
             </div>
 
             <div class="d-flex justify-content-end gap-3 align-items-center">
@@ -521,7 +515,6 @@
                 id="redeem-account"
                 class="btn btn-warning mt-3 rounded-pill d-flex align-items-center justify-content-center"
                 style="font-weight: bold"
-                disabled
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-seam-fill" viewBox="0 0 16 16">
                   <path fill-rule="evenodd" d="M15.528 2.973a.75.75 0 0 1 .472.696v8.662a.75.75 0 0 1-.472.696l-7.25 2.9a.75.75 0 0 1-.557 0l-7.25-2.9A.75.75 0 0 1 0 12.331V3.669a.75.75 0 0 1 .471-.696L7.443.184l.01-.003.268-.108a.75.75 0 0 1 .558 0l.269.108.01.003 6.97 2.789ZM10.404 2 4.25 4.461 1.846 3.5 1 3.839v.4l6.5 2.6v7.922l.5.2.5-.2V6.84l6.5-2.6v-.4l-.846-.339L8 5.961 5.596 5l6.154-2.461L10.404 2Z"/>
