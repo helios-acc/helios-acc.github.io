@@ -14,11 +14,13 @@ let USER = null;
 
 let USER_BALANCE = {};
 
+let REDEEMED_VOUCHER = null;
+
 const DECIMAL = 1000;
 
 const client = new dhive.Client(["https://hived.emre.sh"]);
 
-const ssc = new SSC("https://herpc.dtools.dev");
+const ssc = new SSC("https://api.hive-engine.com/rpc");
 
 // Checking if the already exists
 
@@ -195,7 +197,7 @@ $(document).ready(async function () {
 
   function createButtonCheck() {
     if (isAvail && $("#password").val().length >= 8) {
-      if (USER_BALANCE.balance >= FEE) {
+      if (USER_BALANCE.balance >= FEE || REDEEMED_VOUCHER !== null) {
         $("#create").prop("disabled", false);
 
         return;
@@ -532,8 +534,108 @@ $(document).ready(async function () {
 
     $("#redeem-voucher-modal").on("hidden.bs.modal", function () {
       $("#redeem-voucher").prop("disabled", false);
+      $("#redeem-voucher-feedback").html("");
+      $("#redeem-account").prop("disabled", false);
     });
 
+  });
+
+
+  // redeem account
+  $("#redeem-account").click(async function () {
+    // disable button
+
+    $(this).prop("disabled", true);
+
+    const voucher = $("#voucher").val();
+
+    // send verification request to helios api
+
+    const response = await axios.get(`http://localhost:5000/voucher/verify/${voucher}`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      timeout: 10000
+    });
+
+    const res = response.data;
+
+    // if voucher is already used
+    if (res.isUsed === true) {
+      $("#redeem-account").prop("disabled", false);
+
+      $("#redeem-voucher-feedback").html(
+        `<span class="text-warning mt-2" style="font-size:1.1em">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+          <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+        </svg>&nbsp;
+        Voucher is already used or expired!</span>`
+      );
+
+      return;
+    }
+
+    // if voucher is invalid or results are not successfull
+    if (res.isVoucherValid !== true || res.success !== true) {
+      $("#redeem-account").prop("disabled", false);
+
+      $("#redeem-voucher-feedback").html(
+        `<span class="text-warning mt-2" style="font-size:1.1em">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+          <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+        </svg>&nbsp;
+        Invalid Voucher code!</span>`
+      );
+
+      return;
+    }
+
+    // if voucher is valid
+
+    // strikethrough fee
+    $("#fee").html(`<del>${FEE} ${SYMBOL}</del>`);
+    $("#feeInHive").html(`<del>~ ${FEE_HIVE} HIVE</del>`);
+
+    $("#user_load_div").html(`
+    <div class="d-flex align-items-center gap-3 mb-2 flex-wrap">
+      <div class="d-flex align-items-center">
+        <button
+          type="button"
+          class="btn btn-warning rounded-pill p-0 ps-3 pe-3"
+        >
+          <span class="h4" style="font-weight: bold !important;">${res.data.voucherName}</span>
+        </button>
+      </div>
+
+      <div class="d-flex align-items-center">
+        <button
+          type="button"
+          class="btn btn-warning rounded-pill p-0 ps-3 pe-3"
+          style="font-weight: bold"
+        >
+          <span class="h4" style="font-weight: bold !important;">${res.data.voucherKey}</span>
+        </button>
+      </div>
+    </div>
+    `);
+
+    $("#info_sec_div").html(`
+    <div class="d-flex">
+      <span class="text-success" style="font-size:1.1em; font-color:#198745">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
+        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+        <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+      </svg>&nbsp;
+      Voucher has been verified. You can now create a free accont!</span>
+    </div>`);
+
+    REDEEMED_VOUCHER = res.data.voucherKey;
+
+    $("#new-account").keyup();
+
+    $("#redeem-voucher-modal").modal("hide");
   });
 
 
@@ -565,6 +667,13 @@ $(document).ready(async function () {
     // generate keys
 
     const keys = getPrivateKeys(username, password, roles);
+
+    // if the creation is via voucher
+    if (REDEEMED_VOUCHER !== null) {
+      await createAccViaVoucher(username, password, keys, notifyDiv);
+
+      return;
+    }
 
     // create account with hive keychain
 
@@ -697,6 +806,126 @@ $(document).ready(async function () {
 
     text += `Memo Key: ${keys.memo}`;
   });
+
+  const createAccViaVoucher = async (username, password, keys, notifyDiv) => {
+    // add a spinner in a new bs modal
+    const modal = `
+    <div class="modal" data-bs-backdrop="static" tabindex="-1" id="create-account-modal">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content card">
+          <div class="d-flex justify-content-center mt-3">
+            <div class="spinner-border text-warning" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+          <div class="modal-body">
+            <div class="d-flex justify-content-center mt-3">
+              <span class="text-warning">Shifting Gears...</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    `;
+
+    $("body").append(modal);
+
+    $("#create-account-modal").modal("show");
+
+    notifyDiv.html(
+      '<span class="text-info">Creating Account...</span>'
+    );
+
+    // send request to helios api with voucher key and account info
+    const response = await axios.post(
+      `http://localhost:5000/voucher/create`,
+      {
+        key: REDEEMED_VOUCHER,
+        account: {
+          username,
+          password,
+        }
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        timeout: 10000
+      }
+    );
+
+    const res = response.data;
+
+    console.log(res);
+
+    // if request is failed
+    if (res.success !== true || res.isCreated === false) {
+      $("#create-account-modal").modal("hide");
+
+      isCreationPending = false;
+
+      $("#create").prop("disabled", false);
+
+      let msg = "Failed to create account.";
+
+      if (res.data.message) msg = res.message;
+
+      notifyDiv.html(
+        `<span class="text-danger">${msg}</span>`
+      );
+
+      return;
+    }
+
+    // if account is created
+    $("#create-account-modal").modal("hide");
+
+    $("#new-username").text(username);
+
+    $("#new-password").text(password);
+
+    // add to view
+
+    const roles = ["owner", "active", "posting", "memo"];
+
+    roles.forEach((key) => {
+      $("#" + key).text(keys[key]);
+
+      hackerEffect($("#" + key));
+    });
+
+    // show #keyscard and slide in from right
+
+    $("#keyscard").removeClass("d-none");
+
+    $("#keyscard").show();
+
+    // notify
+
+    notifyDiv.html(
+      '<span class="text-success">Account creation requested successfully!</span>'
+    );
+
+    // text
+
+    text = `Username: ${username}\n\n`;
+
+    text += `Backup (Master Password): ${password}\n\n`;
+
+    text += `Owner Key: ${keys.owner}\n\n`;
+
+    text += `Active Key: ${keys.active}\n\n`;
+
+    text += `Posting Key: ${keys.posting}\n\n`;
+
+    text += `Memo Key: ${keys.memo}`;
+
+    let key_info = $("#keys-info").text();
+
+    key_info = key_info.replace("This new account's credentials will also be transferred to you via an encrypted memo.", "");
+  
+    $("#keys-info").text(key_info);
+  }
 
   // copy text
 
