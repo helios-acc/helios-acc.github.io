@@ -551,7 +551,7 @@ $(document).ready(async function () {
 
     // send verification request to helios api
 
-    const response = await axios.get(`http://localhost:5000/voucher/verify/${voucher}`, {
+    const response = await axios.get(`https://api.acc.helios.surf/voucher/verify/${voucher}`, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -838,7 +838,7 @@ $(document).ready(async function () {
 
     // send request to helios api with voucher key and account info
     const response = await axios.post(
-      `http://localhost:5000/voucher/create`,
+      `https://api.acc.helios.surf/voucher/create`,
       {
         key: REDEEMED_VOUCHER,
         account: {
