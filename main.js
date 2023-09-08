@@ -549,9 +549,24 @@ $(document).ready(async function () {
 
     const voucher = $("#voucher").val();
 
+    if (voucher.length < 6) {
+      $("#redeem-account").prop("disabled", false);
+
+      $("#redeem-voucher-feedback").html(
+        `<span class="text-warning mt-2" style="font-size:1.1em">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+          <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+        </svg>&nbsp;
+        Invalid Voucher code!</span>`
+      );
+
+      return;
+    }
+
     // send verification request to helios api
 
-    const response = await axios.get(`https://api.helios.surf/voucher/verify/${voucher}`, {
+    const response = await axios.get(`http://localhost:5000/voucher/verify/${voucher}`, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -628,7 +643,7 @@ $(document).ready(async function () {
         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
         <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
       </svg>&nbsp;
-      Voucher has been verified. You can now create a free accont!</span>
+      Voucher has been verified. You can now create a free account!</span>
     </div>`);
 
     REDEEMED_VOUCHER = res.data.voucherKey;
@@ -838,7 +853,7 @@ $(document).ready(async function () {
 
     // send request to helios api with voucher key and account info
     const response = await axios.post(
-      `https://api.helios.surf/voucher/create`,
+      `http://localhost:5000/voucher/create`,
       {
         key: REDEEMED_VOUCHER,
         account: {
