@@ -18,9 +18,9 @@ let REDEEMED_VOUCHER = null;
 
 const DECIMAL = 1000;
 
-const client = new dhive.Client(["https://hived.emre.sh"]);
+const client = new dhive.Client(["https://api.deathwing.me"]);
 
-const ssc = new SSC("https://api.hive-engine.com/rpc");
+const ssc = new SSC("https://engine.rishipanthee.com/");
 
 // Checking if the already exists
 
