@@ -565,8 +565,9 @@ $(document).ready(async function () {
     }
 
     // send verification request to helios api
+    // Replaced https://api.helios.surf/voucher/verify/${voucher}
 
-    const response = await axios.get(`https://api.helios.surf/voucher/verify/${voucher}`, {
+    const response = await axios.get(`https://heliosapi-2pr7nb0h.b4a.run/voucher/verify/${voucher}`, {
       headers: {
         "Content-Type": "application/json",
       },
