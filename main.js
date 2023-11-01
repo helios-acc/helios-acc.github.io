@@ -853,8 +853,10 @@ $(document).ready(async function () {
     );
 
     // send request to helios api with voucher key and account info
+
+    // https://api.helios.surf/voucher
     const response = await axios.post(
-      `https://api.helios.surf/voucher/create`,
+      `https://heliosapi-2pr7nb0h.b4a.run/voucher/create`,
       {
         key: REDEEMED_VOUCHER,
         account: {
