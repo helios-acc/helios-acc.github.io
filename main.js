@@ -283,7 +283,7 @@ $(document).ready(async function () {
 
     // update every 20 seconds
 
-    setTimeout(update, 20000);
+    // setTimeout(update, 20000);
   }
 
   // load user balance
