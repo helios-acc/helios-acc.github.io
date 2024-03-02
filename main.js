@@ -18,7 +18,7 @@ let REDEEMED_VOUCHER = null;
 
 const DECIMAL = 1000;
 
-const client = new dhive.Client(["https://hive-api.arcange.eu"]);
+const client = new dhive.Client(["https://api.hive.blog/"]);
 
 const ssc = new SSC("https://engine.rishipanthee.com/");
 
