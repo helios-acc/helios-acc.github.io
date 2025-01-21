@@ -20,7 +20,7 @@ const DECIMAL = 1000;
 
 const client = new dhive.Client(["https://api.hive.blog/"]);
 
-const ssc = new SSC("https://engine.rishipanthee.com/");
+const ssc = new SSC("https://api.primersion.com");
 
 let hiveCoinGeckoAPI = "https://api.coingecko.com/api/v3/simple/price?ids=hive&vs_currencies=usd";
 let hiveMessariAPI = "https://data.messari.io/api/v1/assets/hive/metrics";
